@@ -221,26 +221,28 @@ curl -fsSL "$APIM_GATEWAY_URL/maintenance/tire_curing_press" -H "Ocp-Apim-Subscr
 
 **API Management** provides an easy way to expose APIs as MCP servers without writing any additional wrapper code.
 
-1. Navigate to your **API Management** instance in the [Azure portal](https://portal.azure.com).
-2. Choose *APIs* and notice that *Machine API* and *Maintenance API* you tested earlier is available
+❶ Navigate to your **API Management** instance in the [Azure portal](https://portal.azure.com).
+
+❷ Choose *APIs* and notice that *Machine API* and *Maintenance API* you tested earlier is available
 
 <img src="./images/challenge-1-portal-apis.png" alt="Portal APIs" width="40%">
 
+❸ Navigate to the *MCP Servers* section
 
-3. Navigate to the *MCP Servers* section
-4. Click *Create MCP Server* and *Expose an API as MCP Server*
-5. Select API, operations and provide the following details
-    - **API**: *Machine API*
-    - **API Operations**: *Get Machine*
-    - **Display Name**: *Get Machine Data*
-    - **Name**: `get-machine-data`
-    - **Description**: *Gets details about a specific machine*
+❹ Click *Create MCP Server* and *Expose an API as MCP Server*
+
+❺ Select API, operations and provide the following details:
+- **API**: *Machine API*
+- **API Operations**: *Get Machine*
+- **Display Name**: *Get Machine Data*
+- **Name**: `get-machine-data`
+- **Description**: *Gets details about a specific machine*
 
 <img src="./images/challenge-1-portal-expose-mcp.png" alt="Expose MCP" width="50%">
 
+❻ Click *Create*
 
-6. Click *Create*
-7. Finally, save the *MCP Server URL* of the newly created MCP server, you will need it in the next part. Add a new entry with the value in the `.env` file `MACHINE_MCP_SERVER_ENDPOINT="<MCP_SERVER_URL>"`
+❼ Finally, save the *MCP Server URL* of the newly created MCP server, you will need it in the next part. Add a new entry with the value in the `.env` file `MACHINE_MCP_SERVER_ENDPOINT="<MCP_SERVER_URL>"`
 
 Perform the same steps to create the *Maintenance* MCP server using the following settings:
 
@@ -323,7 +325,7 @@ Out of 2 anomaly records reviewed for machine-001 (Tire Curing Press A1), one vi
 
 #### Task 2.5. Review and test the agent in Foundry Portal
 
-1. Navigate to [**Microsoft Foundry Portal**](https://ai.azure.com).
+❶ Navigate to [**Microsoft Foundry Portal**](https://ai.azure.com).
 
 > [!TIP]
 > Make sure you are using the new Foundry portal experience.  
@@ -332,24 +334,18 @@ Out of 2 anomaly records reviewed for machine-001 (Tire Curing Press A1), one vi
 > <img src="./images/challenge-1-new-foundry-portal.png" alt="New Foundry portal toggle" width="20%">
 >
 
-1. Select the *Build* tab to list available agents
+❷ Select the *Build* tab to list available agents
 
 <img src="./images/challenge-1-foundry-portal-build-tab.png" alt="Foundry portal build tab" width="20%">
 
-2. Examine the configuration details for `AnomalyClassificationAgent` you just created.
-<br/>
+❸ Examine the configuration details for `AnomalyClassificationAgent` you just created.
 
 <img src="./images/challenge-1-foundry-portal-anomaly-classification-agent.png" alt="Foundry Portal Anomaly Classification Agent" width="40%">
-
-
-<br/>
 
 > [!NOTE]
 > There are two vesions of **Anomaly Classifcation Agent** created, one for the inital agent with local tools and one for the version that uses MCP tools
 
-
-
-3. Select the **Anomaly Classification Agent** and try out some additional questions in the playground:
+❹ Select the **Anomaly Classification Agent** and try out some additional questions in the playground:
 
 - Normal condition (no maintenance needed). Use query `Hello, can you classify the following metric for machine-002: [{"metric": "drum_vibration", "value": 2.1}]`
 
@@ -369,9 +365,11 @@ The next agent we'll create, **Fault Diagnosis Agent**, is tasked to understand 
 
 The machine wiki contains knowledge (common issues, repair instructions and repair details) about different machine types. The wiki pages are available as markdown files in **Azure Blob Storage**. Take a moment to review the content:
 
-1. Navigate to [**Azure portal**](https://portal.azure.com) and locate the storage account.
-2. Select *Storage browser* / *Blob containers* and select the `machine-wiki` container  
-3. Select a wiki article and select the *Edit* tab to preview the content
+❶ Navigate to [**Azure portal**](https://portal.azure.com) and locate the storage account.
+
+❷ Select *Storage browser* / *Blob containers* and select the `machine-wiki` container
+
+❸ Select a wiki article and select the *Edit* tab to preview the content
 
 <img src="./images/challenge-1-wiki-storage-page.png" alt="Storage wiki page" width="40%">
 
