@@ -20,7 +20,7 @@ apim_subscription_key = os.environ.get("APIM_SUBSCRIPTION_KEY")
 machine_data_connection_name = "machine-data-connection"
 maintenance_data_connection_name = "maintenance-data-connection"
 machine_data_mcp_endpoint = os.environ.get("MACHINE_MCP_SERVER_ENDPOINT")
-mainteance_data_mcp_endpoint = os.environ.get(
+maintenance_data_mcp_endpoint = os.environ.get(
     "MAINTENANCE_MCP_SERVER_ENDPOINT")
 
 
@@ -65,7 +65,7 @@ async def main():
         create_apim_mcp_connection(
             connection_name="machine-data-connection", mcp_endpoint=machine_data_mcp_endpoint)
         create_apim_mcp_connection(
-            connection_name="maintenance-data-connection", mcp_endpoint=mainteance_data_mcp_endpoint)
+            connection_name="maintenance-data-connection", mcp_endpoint=maintenance_data_mcp_endpoint)
 
         # Create Agent
         project_client = AIProjectClient(
@@ -110,7 +110,7 @@ async def main():
                     ),
                     MCPTool(
                         server_label="maintenance-data",
-                        server_url=mainteance_data_mcp_endpoint,
+                        server_url=maintenance_data_mcp_endpoint,
                         require_approval="never",
                         project_connection_id=maintenance_data_connection_name
                     )

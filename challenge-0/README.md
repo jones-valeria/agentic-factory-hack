@@ -171,6 +171,8 @@ Please select your forked repository from the dropdown and, if necessary, adjust
 > [!NOTE]
 > If GitHub Codespaces is not enabled in your organization, see [enabling or disabling Codespaces for your organization](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/enabling-or-disabling-github-codespaces-for-your-organization). If you can’t change your organization’s settings, you can also [create a free personal GitHub account](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home). The GitHub Free plan includes 120 core hours per month, equivalent to 60 hours on a 2-core machine, along with 15 GB of storage.
 
+⏱️ Initial creation of the Codespace takes approximately 10 minutes
+
 ---
 
 ### Task 3: Log in to Azure
@@ -195,7 +197,7 @@ In this step, you create the resources that will be used throughout the day.
 <summary>Deploy Azure resources</summary>
 
 ```bash
-# Register the Microsoft.AlertsManagement namespace for use in the subscription
+# Ensure Microsoft.AlertsManagement resource provider is registered for use in the subscription
 az provider register --namespace Microsoft.AlertsManagement
 
 # Ensure you are located in the challenge-0 directory
@@ -241,12 +243,16 @@ After deploying resources, configure environment variables in the `.env` file. E
 > [!IMPORTANT]
 > Wait until all Azure resources are successfully deployed before starting this task.
 > Otherwise, the environment variables may not be extracted correctly.
+> If the environment is pre-created for you, the resource group name will be provided by the hackathon coaches. Set it using `export RESOURCE_GROUP='your predefined resource group name'`
 
 ```bash
+# Ensure you are in the challenge-0 directory
+cd challenge-0
+
 # Extract connection keys
 ./get-keys.sh --resource-group $RESOURCE_GROUP
 
-# Verify .env file
+# Verify .env file. No entries should be empty
 cat ../.env
 
 # Make environment variables available in the shell
@@ -264,7 +270,17 @@ export $(cat ../.env | xargs)
 
 ---
 
-### Task 7: Assign additional permissions
+### Task 7: Seed Factory Sample Data
+
+As mentioned in [Context and Background](#-context-and-background), there are several data sources used throughout the hackathon. Run the script below to upload data to **Cosmos DB** and the **Storage Account**, and to create the required APIs in **API Management**.
+
+```bash
+# Run data seeding script
+./seed-data.sh
+```
+---
+
+### Task 8: Assign additional permissions
 
 To perform certain tasks in the hackathon, you need the following permissions:
 
@@ -321,15 +337,6 @@ az login --use-device-code
 ```
 
 </details>
-
-### Task 8: Seed Factory Sample Data
-
-As mentioned in [Context and Background](#-context-and-background), there are several data sources used throughout the hackathon. Run the script below to upload data to **Cosmos DB** and the **Storage Account**, and to create the required APIs in **API Management**.
-
-```bash
-# Run data seeding script
-./seed-data.sh
-```
 
 <br/>
 🎉 Congratulations! Your sample tire factory environment is ready.
