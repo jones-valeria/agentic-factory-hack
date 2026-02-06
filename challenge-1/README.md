@@ -119,9 +119,32 @@ Let's break down what the diagram shows:
 
 You will also ground the agent with data using **Foundry IQ**.
 
-**Foundry IQ** is a managed knowledge base (an agentic retrieval workload powered by **Azure AI Search**) that lets your agent retrieve relevant chunks from your own documents at runtime. Instead of pasting wiki content into prompts, the agent issues targeted retrieval requests and uses the returned passages to produce answers that stay aligned with your source material.
+**Foundry IQ** is a retrieval-augmented generation (RAG) capability in Azure AI Foundry that enables agents to access and reason over your enterprise data. It provides a managed knowledge retrieval layer powered by **Azure AI Search**, letting your agent retrieve relevant chunks from your own documents at runtime. Instead of pasting wiki content into prompts, the agent issues targeted retrieval requests and uses the returned passages to produce answers that stay aligned with your source material.
 
-In this challenge, we’ll use Foundry IQ to make the **machine wiki** available to the Fault Diagnosis Agent via an MCP tool.
+Key benefits of Foundry IQ:
+
+- **Simplified development**: No need to build custom RAG pipelines — Foundry IQ handles chunking, indexing, and retrieval for you.
+- **Flexible data integration**: Connect multiple data sources to a single knowledge base.
+- **Enhanced agent capabilities**: Agents can access up-to-date enterprise knowledge without retraining the model.
+
+Foundry IQ consists of two main concepts:
+
+| Concept | Description |
+|---------|-------------|
+| **Knowledge Sources** | The *what* to retrieve — connections to your data. These define where the content comes from. |
+| **Knowledge Bases** | The *how* to retrieve — the retrieval configuration that combines one or more knowledge sources into a queryable endpoint. |
+
+<img src="./images/challenge-1-foundry-iq.png" alt="Foundry IQ Architecture" width="60%">
+
+Let's break down the key components shown in the diagram:
+
+| # | Component | Description |
+|---|-----------|-------------|
+| **❶** | **End User** | The agent receives questions from the end user and processes them. |
+| **❷** | **Large Language Model** | The agent uses a large language model to reason about the question and determine the next action. |
+| **❸** | **Knowledge Base** | In Foundry IQ, we have a knowledge base with several knowledge sources that the agent can query. |
+| **❹** | **Indexed Sources** | Pre-indexed sources like Azure AI Search indexes, Azure Blob Storage, and Azure Data Lake. Content is indexed ahead of time for fast vector and keyword retrieval. |
+| **❺** | **Remote Sources** | On-demand sources like SharePoint and Bing that are queried at runtime. Useful for real-time data that changes frequently. |In this challenge, we’ll use Foundry IQ to make the **machine wiki** available to the Fault Diagnosis Agent via an MCP tool.
 
 
 ## ✅ Tasks
