@@ -210,8 +210,8 @@ cd challenge-0
 export RG_SUFFIX="<initials>"
 
 # Set variables with your initials as suffix
-export RESOURCE_GROUP="rg-tire-factory-hack-${RG_SUFFIX}"
-export LOCATION="swedencentral"
+export RESOURCE_GROUP=""
+export LOCATION="Germany West Central"
 
 # Create resource group
 az group create --name $RESOURCE_GROUP --location $LOCATION
