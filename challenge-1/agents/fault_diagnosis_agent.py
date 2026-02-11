@@ -63,16 +63,18 @@ Grounding rules (IMPORTANT):
 """,
 
                 tools=[
-
                     MCPTool(
                         server_label="machine-data",
                         server_url=machine_data_mcp_endpoint,
                         require_approval="never",
                         project_connection_id="machine-data-connection"
                     ),
-
-                    # TODO: add Foundry IQ MCP tool
-
+                    MCPTool(
+                        server_label="machine-wiki",
+                        server_url=machine_wiki_mcp_endpoint,
+                        require_approval="never",
+                        project_connection_id="machine-wiki-connection"
+                    ),
                 ]
 
             ))
